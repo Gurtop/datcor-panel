@@ -122,8 +122,11 @@
     <script>
         async function updatePanel() {
             try {
-                // Cache busting by adding timestamp to the request
-                const response = await fetch('stats.json?v=' + new Date().getTime());
+                // Using absolute path to avoid relative path issues on GitHub Pages
+                const baseUrl = window.location.origin;
+                const path = window.location.pathname.startsWith('/datcor-panel') ? '/datcor-panel/stats.json' : '/stats.json';
+                const response = await fetch(baseUrl + path + '?v=' + new Date().getTime());
+                
                 if (!response.ok) throw new Error('HTTP error ' + response.status);
                 const data = await response.json();
                 
@@ -158,7 +161,7 @@
                 \`).join('');
             } catch (e) {
                 console.error('Critical error loading stats:', e);
-                document.getElementById('last-updated').innerText = 'Помилка даних';
+                document.getElementById('last-updated').innerText = 'Помилка завантаження';
                 document.getElementById('last-updated').classList.add('text-red-400');
             }
         }
