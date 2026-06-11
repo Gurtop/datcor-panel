@@ -12,6 +12,21 @@
         .status-active { color: #4ade80; background: rgba(74, 222, 128, 0.1); }
         .status-busy { color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
         .accent-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
+        
+        /* Skeleton Animation */
+        .skeleton {
+            background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-text { height: 1.2rem; width: 60px; }
+        .skeleton-title { height: 1.5rem; width: 100%; }
     </style>
 </head>
 <body class="p-6">
@@ -24,7 +39,7 @@
             <div class="flex items-center gap-4">
                 <div class="text-right">
                     <p class="text-sm text-slate-400">Останнє оновлення (Київ)</p>
-                    <p id="last-updated" class="font-mono text-blue-400">Завантаження...</p>
+                    <p id="last-updated" class="font-mono text-blue-400"><span class="skeleton skeleton-text"></span></p>
                 </div>
                 <div class="h-10 w-10 rounded-full accent-gradient flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <i class="fa-solid fa-robot text-white"></i>
@@ -39,7 +54,7 @@
                     <span class="text-green-400 text-xs font-bold">Active</span>
                 </div>
                 <p class="text-slate-400 text-sm">Завдань за сьогодні</p>
-                <h3 id="tasks-today" class="text-2xl font-bold">-</h3>
+                <h3 id="tasks-today" class="text-2xl font-bold"><span class="skeleton skeleton-text"></span></h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -47,7 +62,7 @@
                     <span class="text-slate-400 text-xs font-bold">Stable</span>
                 </div>
                 <p class="text-slate-400 text-sm">Uptime агента</p>
-                <h3 id="uptime" class="text-2xl font-bold">-</h3>
+                <h3 id="uptime" class="text-2xl font-bold"><span class="skeleton skeleton-text"></span></h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -55,7 +70,7 @@
                     <span class="text-blue-400 text-xs font-bold">Progress</span>
                 </div>
                 <p class="text-slate-400 text-sm">Контент-план (UA)</p>
-                <h3 id="content-progress" class="text-2xl font-bold">-</h3>
+                <h3 id="content-progress" class="text-2xl font-bold"><span class="skeleton skeleton-text"></span></h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -63,7 +78,7 @@
                     <span class="text-green-400 text-xs font-bold">Active</span>
                 </div>
                 <p class="text-slate-400 text-sm">AgentMail Activity</p>
-                <h3 id="mail-activity" class="text-2xl font-bold">-</h3>
+                <h3 id="mail-activity" class="text-2xl font-bold"><span class="skeleton skeleton-text"></span></h3>
             </div>
         </div>
 
@@ -83,6 +98,10 @@
                             </tr>
                         </thead>
                         <tbody id="agent-table-body" class="text-sm">
+                            <!-- Skeletons will be replaced by JS -->
+                            <tr>
+                                <td colspan="4" class="py-8 text-center text-slate-500">Завантаження даних...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -93,6 +112,21 @@
                     <i class="fa-solid fa-list-ul text-blue-500"></i> Лог активності
                 </h3>
                 <div id="activity-log" class="space-y-6">
+                    <!-- Skeletons -->
+                    <div class="flex gap-4 relative">
+                        <div class="h-6 w-6 rounded-full bg-slate-700 flex items-center justify-center z-10"></div>
+                        <div class="flex-1 space-y-2">
+                            <div class="skeleton skeleton-text w-3/4"></div>
+                            <div class="skeleton skeleton-text w-1/2"></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 relative">
+                        <div class="h-6 w-6 rounded-full bg-slate-700 flex items-center justify-center z-10"></div>
+                        <div class="flex-1 space-y-2">
+                            <div class="skeleton skeleton-text w-2/3"></div>
+                            <div class="skeleton skeleton-text w-1/3"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,6 +136,7 @@
         async function updatePanel() {
             try {
                 const response = await fetch('stats.json');
+                if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 
                 document.getElementById('last-updated').innerText = data.last_updated;
@@ -135,6 +170,7 @@
                 \`).join('');
             } catch (e) {
                 console.error('Error loading stats:', e);
+                document.getElementById('last-updated').innerText = 'Помилка завантаження';
             }
         }
         updatePanel();
