@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Datcor Agent Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -101,7 +104,7 @@
     </div>
 
     <script>
-        // PLAN B: Embedded data to ensure visibility regardless of fetch issues
+        // ABSOLUTE DATA BACKUP: Injected directly into HTML
         const EMBEDDED_DATA = {
           "last_updated": "2026-06-11 16:10",
           "metrics": {
@@ -156,6 +159,9 @@
         }
 
         async function updatePanel() {
+            // First, render embedded data immediately to prevent any "Loading" state
+            render(EMBEDDED_DATA);
+
             try {
                 const baseUrl = window.location.origin;
                 const path = window.location.pathname.startsWith('/datcor-panel') ? '/datcor-panel/stats.json' : '/stats.json';
@@ -165,8 +171,7 @@
                 const data = await response.json();
                 render(data);
             } catch (e) {
-                console.error('Fetch failed, using embedded data:', e);
-                render(EMBEDDED_DATA);
+                console.error('Fetch failed, staying with embedded data:', e);
             }
         }
         updatePanel();
