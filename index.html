@@ -24,7 +24,7 @@
             <div class="flex items-center gap-4">
                 <div class="text-right">
                     <p class="text-sm text-slate-400">Останнє оновлення (Київ)</p>
-                    <p class="font-mono text-blue-400">2026-06-11 15:49</p>
+                    <p id="last-updated" class="font-mono text-blue-400">Завантаження...</p>
                 </div>
                 <div class="h-10 w-10 rounded-full accent-gradient flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <i class="fa-solid fa-robot text-white"></i>
@@ -39,7 +39,7 @@
                     <span class="text-green-400 text-xs font-bold">Active</span>
                 </div>
                 <p class="text-slate-400 text-sm">Завдань за сьогодні</p>
-                <h3 class="text-2xl font-bold">11</h3>
+                <h3 id="tasks-today" class="text-2xl font-bold">-</h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -47,7 +47,7 @@
                     <span class="text-slate-400 text-xs font-bold">Stable</span>
                 </div>
                 <p class="text-slate-400 text-sm">Uptime агента</p>
-                <h3 class="text-2xl font-bold">100%</h3>
+                <h3 id="uptime" class="text-2xl font-bold">-</h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -55,7 +55,7 @@
                     <span class="text-blue-400 text-xs font-bold">Progress</span>
                 </div>
                 <p class="text-slate-400 text-sm">Контент-план (UA)</p>
-                <h3 class="text-2xl font-bold">9 / 49</h3>
+                <h3 id="content-progress" class="text-2xl font-bold">-</h3>
             </div>
             <div class="glass-card p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -63,7 +63,7 @@
                     <span class="text-green-400 text-xs font-bold">Active</span>
                 </div>
                 <p class="text-slate-400 text-sm">AgentMail Activity</p>
-                <h3 class="text-2xl font-bold">1</h3>
+                <h3 id="mail-activity" class="text-2xl font-bold">-</h3>
             </div>
         </div>
 
@@ -82,31 +82,7 @@
                                 <th class="pb-4 font-medium text-right">Завдань</th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm">
-                            <tr class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                                <td class="py-4 font-semibold">Datcor Sales</td>
-                                <td class="py-4 text-slate-400">Пошук лідів & Outreach</td>
-                                <td class="py-4"><span class="px-2 py-1 rounded-full text-xs font-bold status-active">Active</span></td>
-                                <td class="py-4 text-right font-mono">1</td>
-                            </tr>
-                            <tr class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                                <td class="py-4 font-semibold">Datcor Support</td>
-                                <td class="py-4 text-slate-400">Підтримка & Модерація</td>
-                                <td class="py-4"><span class="px-2 py-1 rounded-full text-xs font-bold status-active">Active</span></td>
-                                <td class="py-4 text-right font-mono">0</td>
-                            </tr>
-                            <tr class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                                <td class="py-4 font-semibold">Datcor Parser</td>
-                                <td class="py-4 text-slate-400">Моніторинг новин & SEO</td>
-                                <td class="py-4"><span class="px-2 py-1 rounded-full text-xs font-bold status-active">Active</span></td>
-                                <td class="py-4 text-right font-mono">9</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors">
-                                <td class="py-4 font-semibold">Datcor Mailer</td>
-                                <td class="py-4 text-slate-400">Керування AgentMail</td>
-                                <td class="py-4"><span class="px-2 py-1 rounded-full text-xs font-bold status-active">Active</span></td>
-                                <td class="py-4 text-right font-mono">1</td>
-                            </tr>
+                        <tbody id="agent-table-body" class="text-sm">
                         </tbody>
                     </table>
                 </div>
@@ -116,40 +92,52 @@
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
                     <i class="fa-solid fa-list-ul text-blue-500"></i> Лог активності
                 </h3>
-                <div class="space-y-6">
-                    <div class="flex gap-4 relative">
-                        <div class="absolute left-3 top-6 bottom-0 w-px bg-slate-700"></div>
-                        <div class="h-6 w-6 rounded-full bg-blue-500 flex items-center justify-center z-10 shadow-lg shadow-blue-500/40">
-                            <i class="fa-solid fa-paper-plane text-[10px] text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Тестовий лист proboots@proton.me</p>
-                            <p class="text-xs text-slate-500">AgentMail • сьогодні</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 relative">
-                        <div class="absolute left-3 top-6 bottom-0 w-px bg-slate-700"></div>
-                        <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center z-10 shadow-lg shadow-green-500/40">
-                            <i class="fa-solid fa-globe text-[10px] text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Дайджест у ТГ (UA version)</p>
-                            <p class="text-xs text-slate-500">datcor_online • сьогодні</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 relative">
-                        <div class="absolute left-3 top-6 bottom-0 w-px bg-slate-700"></div>
-                        <div class="h-6 w-6 rounded-full bg-purple-500 flex items-center justify-center z-10 shadow-lg shadow-purple-500/40">
-                            <i class="fa-solid fa-code text-[10px] text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Розгортання GitHub Pages</p>
-                            <p class="text-xs text-slate-500">DevOps • сьогодні</p>
-                        </div>
-                    </div>
+                <div id="activity-log" class="space-y-6">
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        async function updatePanel() {
+            try {
+                const response = await fetch('stats.json');
+                const data = await response.json();
+                
+                document.getElementById('last-updated').innerText = data.last_updated;
+                document.getElementById('tasks-today').innerText = data.metrics.tasks_today;
+                document.getElementById('uptime').innerText = data.metrics.uptime;
+                document.getElementById('content-progress').innerText = data.metrics.content_progress;
+                document.getElementById('mail-activity').innerText = data.metrics.agentmail_activity;
+                
+                const tableBody = document.getElementById('agent-table-body');
+                tableBody.innerHTML = data.agents.map(a => \`
+                    <tr class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
+                        <td class="py-4 font-semibold">\${a.name}</td>
+                        <td class="py-4 text-slate-400">\${a.role}</td>
+                        <td class="py-4"><span class="px-2 py-1 rounded-full text-xs font-bold \${a.status === 'Active' ? 'status-active' : 'status-busy'}">\${a.status}</span></td>
+                        <td class="py-4 text-right font-mono">\${a.tasks}</td>
+                    </tr>
+                \`).join('');
+
+                const logContainer = document.getElementById('activity-log');
+                logContainer.innerHTML = data.logs.map((l, i) => \`
+                    <div class="flex gap-4 relative">
+                        \${i < data.logs.length - 1 ? '<div class="absolute left-3 top-6 bottom-0 w-px bg-slate-700"></div>' : ''}
+                        <div class="h-6 w-6 rounded-full \${l.color} flex items-center justify-center z-10 shadow-lg shadow-blue-500/40">
+                            <i class="fa-solid \${l.icon} text-[10px] text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">\${l.text}</p>
+                            <p class="text-xs text-slate-500">\${l.source} • \${l.time}</p>
+                        </div>
+                    </div>
+                \`).join('');
+            } catch (e) {
+                console.error('Error loading stats:', e);
+            }
+        }
+        updatePanel();
+    </script>
 </body>
 </html>

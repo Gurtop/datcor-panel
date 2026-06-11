@@ -1,0 +1,20 @@
+{
+  "last_updated": "2026-06-11 16:10",
+  "metrics": {
+    "tasks_today": 11,
+    "uptime": "100%",
+    "content_progress": "9 / 49",
+    "agentmail_activity": 1
+  },
+  "agents": [
+    { "name": "Datcor Sales", "role": "Пошук лідів & Outreach", "status": "Active", "tasks": 1 },
+    { "name": "Datcor Support", "role": "Підтримка & Модерація", "status": "Active", "tasks": 0 },
+    { "name": "Datcor Parser", "role": "Моніторинг новин & SEO", "status": "Active", "tasks": 9 },
+    { "name": "Datcor Mailer", "role": "Керування AgentMail", "status": "Active", "tasks": 1 }
+  ],
+  "logs": [
+    { "text": "Тестовий лист proboots@proton.me", "icon": "fa-paper-plane", "color": "bg-blue-500", "source": "AgentMail", "time": "сьогодні" },
+    { "text": "Дайджест у ТГ (UA version)", "icon": "fa-globe", "color": "bg-green-500", "source": "datcor_online", "time": "сьогодні" },
+    { "text": "Розгортання GitHub Pages", "icon": "fa-code", "color": "bg-purple-500", "source": "DevOps", "time": "сьогодні" }
+  ]
+}
